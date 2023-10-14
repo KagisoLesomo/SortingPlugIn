@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  #bubble-canvas {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  button {
+    background-color: lightblue;
+    border: 1px solid blue;
+    padding: 5px 10px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: lightcyan;
+  }
+  
+  /* Add a new CSS class for the comparison indicator */
+  .comparison-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: yellow;
+    border-radius: 50%; /* Make it circular */
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.5s;
+  }
+  
