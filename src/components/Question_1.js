@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./QuickSort.css";
 
 const QuickSort = () => {
   const [inputArray, setInputArray] = useState("");
@@ -19,16 +20,21 @@ const QuickSort = () => {
     setInputArray(e.target.value);
   };
 
+
+
   const sortArray = () => {
     const arr = inputArray.split(",").map((item) => parseInt(item));
-    if (selectedPivot === pivot) {
-      setIsPivotCorrect(true);
-      quickSort(arr, 0, arr.length - 1);
-      setSortedArray(arr);
-    } else {
-      setIsPivotCorrect(false);
-    }
+    quickSort(arr, 0, arr.length - 1);
+    setSortedArray(arr);
   };
+  
+  const showSelection = () => {
+    const arr = inputArray.split(",").map((item) => parseInt(item));
+    quickSort(arr, 0, arr.length - 1);
+  };
+  
+
+
 
   const quickSort = (arr, left, right) => {
     if (left < right) {
@@ -80,7 +86,7 @@ const QuickSort = () => {
   };
 
   return (
-    <div>
+    <div className="quick-sort-container">
       <h2>QuickSort with Median of Three Pivot</h2>
       <div>
         <button onClick={() => generateRandomArray(10, 100)}>
@@ -92,34 +98,47 @@ const QuickSort = () => {
           onChange={handleInputChange}
           placeholder="Enter comma-separated numbers"
         />
-        <button onClick={sortArray}>Sort</button>
       </div>
       <div>
+      <button onClick={showSelection}>Enter</button>
         <h3>Select the Pivot</h3>
-        {pivot &&
-          [pivot, inputArray.split(",").map((item) => parseInt(item)).pop()].map(
-            (item, index) => (
-              <label key={index}>
-                <input
-                  type="radio"
-                  name="pivot"
-                  value={item}
-                  onChange={handlePivotSelection}
-                />
-                {item}
-              </label>
-            )
-          )}
+        {pivot && (
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="pivot"
+                value={pivot}
+                onChange={handlePivotSelection}
+              />
+              {pivot}
+            </label>
+            {inputArray
+              .split(",")
+              .map((item) => parseInt(item))
+              .filter((item) => item !== pivot)
+              .map((item, index) => (
+                <label key={index}>
+                  <input
+                    type="radio"
+                    name="pivot"
+                    value={item}
+                    onChange={handlePivotSelection}
+                  />
+                  {item}
+                </label>
+              ))}
+          </div>
+        )}
       </div>
       {selectedPivot !== null &&
         (isPivotCorrect ? (
           <p>Correct! You chose the correct pivot.</p>
         ) : (
-          <p>
-            Incorrect! The correct pivot is {pivot}. Please choose again.
-          </p>
+          <p>Incorrect! The correct pivot is {pivot}. Please choose again.</p>
         ))}
       <div>
+        <button onClick={sortArray}>Sort</button>
         <h3>Sorted Array</h3>
         <p>{sortedArray.join(", ")}</p>
       </div>
@@ -128,3 +147,15 @@ const QuickSort = () => {
 };
 
 export default QuickSort;
+
+
+//  const sortArray = () => {
+//     const arr = inputArray.split(",").map((item) => parseInt(item));
+//     if (selectedPivot === pivot) {
+//       setIsPivotCorrect(true);
+//       quickSort(arr, 0, arr.length - 1);
+//       setSortedArray(arr);
+//     } else {
+//       setIsPivotCorrect(false);
+//     }
+//   };

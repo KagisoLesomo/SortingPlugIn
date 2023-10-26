@@ -1,0 +1,55 @@
+.quick-sort-container {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .quick-sort-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .quick-sort-container button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .quick-sort-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .quick-sort-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+  }
+  
+  .quick-sort-container div {
+    margin: 20px 0;
+  }
+  
+  .quick-sort-container h3 {
+    color: #555;
+  }
+  
+  .quick-sort-container label {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .quick-sort-container p {
+    color: #333;
+    margin-top: 10px;
+  }
+  
