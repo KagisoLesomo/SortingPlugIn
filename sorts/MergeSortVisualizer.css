@@ -1,0 +1,25 @@
+.merge-sort-container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  margin: 20px;
+}
+
+canvas {
+  width: 800px; /* Set the canvas size as needed */
+  height: 200px; /* Set the canvas size as needed */
+  border: 2px solid #333;
+}
+
+button {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

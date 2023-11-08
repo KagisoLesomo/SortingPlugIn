@@ -1,0 +1,14 @@
+/* BubbleSortPractice.css */
+.balloon-tail {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #007bff transparent;
+    z-index: 1;
+    width: 0;
+    height: 0;
+  }
+  
