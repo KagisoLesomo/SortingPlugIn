@@ -43,37 +43,15 @@ const  MergeQuizzesPage= () => {
     // Function to fetch quiz questions based on quizId
     const fetchQuizQuestions = async (quizTitle) => {
       const db = getFirestore();
-      
-      // Replace 'Sorts' with your actual collection name
-      const sortsCol = collection(db, 'Sorts');
-    
-      const querySnapshot = await getDocs(sortsCol);
-    
-      const mergeDocs = [];
-    
-      querySnapshot.forEach(async (doc) => {
-        // Check if the document has the correct subcollection name ('Merge')
-        const subcollectionName = doc.data().subcollection;
-    
-        if (subcollectionName === 'Merge') {
-          // Query the specific subcollection for the quizTitle
-          const mergeCol = collection(doc.ref, 'Merge');
-          const mergeQuery = query(mergeCol, where('Title', '==', quizTitle));
-    
-          try {
-            const mergeQuerySnapshot = await getDocs(mergeQuery);
-            mergeQuerySnapshot.forEach((mergeDoc) => {
-              // Add the documents from the 'Merge' subcollection to the result array
-              mergeDocs.push({ id: mergeDoc.id, ...mergeDoc.data() });
-            });
-          } catch (error) {
-            console.error("Error getting documents from 'Merge': ", error);
-          }
-        }
-      });
-    
-      // Set the result array to state
-      setQuizQuestions(mergeDocs);
+      const quizQuestionsQuery = query(collectionGroup(db, quizTitle));
+  
+      try {
+        const querySnapshot = await getDocs(quizQuestionsQuery);
+        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setQuizQuestions(data);
+      } catch (error) {
+        console.error("Error getting quiz questions: ", error);
+      }
     };
   console.log(quizzes);
   console.log(quizQuestions);
