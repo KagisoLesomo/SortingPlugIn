@@ -34,7 +34,7 @@ const Header = () => {
           <h1> DATA STRUCTURES & ALGORITHMS: </h1>
         </div>
 
-        <div> 
+        <div class="btn"> 
           <button onClick={handleLogout}>Logout</button>  
         </div>  
       </div>
