@@ -12,6 +12,7 @@ import Merge from './components/sorts/Merge';
 import MergeQuizzesPage from './components/sorts/MergeQuizzesPage';
 import Quick from './components/sorts/Quick';
 import SortingAlgorithmsPage from './components/sorts/SortingAlgorithmsPage';
+import AdminPage from './components/admin.js';
 
 import {OtherSort,Overview,Practice} from './components/sorts/OtherSort';
 
@@ -66,9 +67,12 @@ function App() {
         <Route path="/other/practice" element={<Practice />} />
 
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={user ?(
-            <MainPage />
-          ):(<Navigate to="/login"/>)} />
+        <Route path="/" element={user ?(<MainPage />
+          ):(<Navigate to="/login" />
+          )}
+        />
+        
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </Router>
   );
