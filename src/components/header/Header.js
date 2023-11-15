@@ -2,6 +2,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import '../MainPageStyle.css';
 //import { useHistory } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { NavLink,useNavigate } from 'react-router-dom';
@@ -27,9 +28,25 @@ const Header = () => {
 
   return (
     <div>
-      <h1>Sorting Algorithm PlugIn</h1>
-      <button onClick={handleLogout}>Logout</button>
+      
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div class="heading">
+          <h1> DATA STRUCTURES & ALGORITHMS: </h1>
+        </div>
+
+        <div> 
+          <button onClick={handleLogout}>Logout</button>  
+        </div>  
+      </div>
+      
+      <div class="heading-sort">
+        <h1> SORTING </h1>
+      </div>
+        
+        
     </div>
+
+    
   );
 };
 

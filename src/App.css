@@ -7,10 +7,12 @@
 
 .button-container{
   display: flex;
-  align-items: center;
   gap: 30px;
   margin-bottom: 30px;
+  justify-content: space-evenly;
+  max-width: 80%;
 }
+
 .resizedButton{
   width: 200px;
   height: 250px;

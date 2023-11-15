@@ -106,6 +106,7 @@ export default Login*/
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { NavLink, useNavigate } from 'react-router-dom'
+import Header from './header/Header';
 
 const Login = () => {
 const navigate = useNavigate();
@@ -128,16 +129,18 @@ const navigate = useNavigate();
 
   return (
     <div>
+        <Header />
+
         <h1>Login:</h1>
 
       <div>
-      <label htmlFor="email-address">
+      <label htmlFor="email-address" className='email-label'>
                                     Email address
                                 </label>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className='password-label'>Password</label>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
       <button onClick={handleLogin}>Login</button>
