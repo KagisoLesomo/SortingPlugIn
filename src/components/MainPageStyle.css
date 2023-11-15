@@ -54,6 +54,38 @@ html{
     max-height: 700px;
   }
 
+  .email-label {
+    background-image: url("../images/email.png");
+    background-size:cover;
+    background-repeat: no-repeat;
+	background-position: center;
+    width: 18vw;
+    height: 5vh;
+    margin: 5rem;
+  }
+
+.email-label input, .password-label input {
+    
+    margin-top: 3rem;
+    outline: none;
+    background: #E6DBA7;
+    border: 2px solid black;
+    font-size: 1.25em;
+    padding: .5em;
+    color: inherit;
+    border-radius: 5px;
+}
+
+  .password-label {
+    background-image: url("../images/password.png");
+    background-size:cover;
+    background-repeat: no-repeat;
+	background-position: center;
+    width: 14vw;
+    height: 5vh;
+    margin: 5rem;
+}
+
   .mode-menu {
     display: flex;
     flex-direction: row;
@@ -82,6 +114,18 @@ html{
 	flex-grow: 1;
 }
 
+.login-container {
+    width: 30%;
+	height: 90vh;
+	padding: 2rem 2rem;
+    background-image: url("../images/border.png");
+    background-size:cover;
+    background-repeat: no-repeat;
+	background-position: center;
+    display: flex;
+    flex-direction: column;
+    
+}
 
 .main-footer {
 	display: flex;
@@ -119,5 +163,31 @@ html{
 	color: #ede50a;
 }
   
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.btn button {
+	color: white;
+	background-color: #CD366C;
+	padding: .75rem 1.5rem;
+	border-radius: .5rem;
+	text-decoration: none;
+	font-size: 1.5rem;
+	border: 2px solid black;
+	border: none;
+	cursor: pointer;
+    margin-left: 1rem;
+    margin-bottom: 4rem;
+	
+}
 
-  
+.btn button:hover {
+	background-color: #BB2058;
+}
+
+.btn button:focus {
+	background-color: #D84C7E;
+
+}
