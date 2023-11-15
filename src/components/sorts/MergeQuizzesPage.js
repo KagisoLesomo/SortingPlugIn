@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import './MergeQuizzesPage.css'; 
-import { getFirestore, collectionGroup, collection, getDocs, query, where } from 'firebase/firestore';
-import Header from '../header/Header';
+import React, { useState,useEffect } from 'react';
+import QuizzesList from './QuizzesList';
 import DBQuizzesList from './DBQuizzesList';
-const MergeQuizzesPage = () => {
+import { getFirestore,collectionGroup, collection, getDocs, or } from 'firebase/firestore';
+import { query, where,orderBy } from 'firebase/firestore';
+import Header from '../header/Header';
+
+const  MergeQuizzesPage= () => {
   const [quizzes, setQuizzes] = useState([]);
   const [quizQuestions, setQuizQuestions] = useState([]);
-  const [selectedQuiz, setSelectedQuiz] = useState(null);
 
-  
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState({});
-  const [quizStarted, setQuizStarted] = useState(false);
-
+  const [sorts, setSorts] = useState([]);
   useEffect(() => {
     const fetchQuizzes = async () => {
       const db = getFirestore();
       const quizzesCol = collection(db, 'Quizzes');
-      const q = query(quizzesCol, where('Sort Type', '==', 'Merge'));
+      //const sortsCol = collection(db, 'Sorts');
+
+      // Create a query to get documents from the "Quizzes" collection
+      const q = query(quizzesCol, where('Sort Type', '==', 'Merge'), orderBy('Quiz ID', 'asc'));
 
       try {
         const querySnapshot = await getDocs(q);
@@ -31,87 +31,75 @@ const MergeQuizzesPage = () => {
         console.error('Error getting quizzes: ', error);
       }
     };
+    
+    // Call the function with a specific quiz ID, for example '0'
+    
+    fetchQuizzes(); // Call the function to fetch quizzes when the component mounts
+    
 
-    fetchQuizzes();
   }, []);
-  useEffect(() => {
-    console.log('Updated quiz questions:', quizQuestions);
-    // You can perform any additional actions here after quizQuestions is updated
-  }, [quizQuestions]);
+  
 
-  const fetchQuizQuestions = async (quizTitle, filter) => {
-    const db = getFirestore();
-    const quizQuestionsQuery = query(
-      collectionGroup(db, quizTitle),
-      where('Title', '==', filter)
-    );
+    // Function to fetch quiz questions based on quizId
+    const fetchQuizQuestions = async (quizTitle) => {
+      const db = getFirestore();
+      const quizQuestionsQuery = query(collectionGroup(db, quizTitle));
+  
+      try {
+        const querySnapshot = await getDocs(quizQuestionsQuery);
+        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setQuizQuestions(data);
+      } catch (error) {
+        console.error("Error getting quiz questions: ", error);
+      }
+    };
+  console.log(quizzes);
+  console.log(quizQuestions);
 
-    try {
-      const querySnapshot = await getDocs(quizQuestionsQuery);
-      const data = querySnapshot.docs.map((doc) => ({
-        questionId: doc.id,
-        question: doc.data()['Question'],
-        answer: doc.data()['Answer'],
-        explanation: doc.data()['Explanation'],
-        options: [
-          doc.data()['Option A'],
-          doc.data()['Option B'],
-          doc.data()['Option C'],
-          doc.data()['Option D'],
-        ],
-      }));
-      setQuizQuestions(data);
-      console.log('quiz questions inside fetch:', data);
-    } catch (error) {
-      console.error("Error getting quiz questions: ", error);
-    }
-  };
+  //Fetch quiz data (questions and answers) from sorts collection:
 
-  const onStartQuiz = async (quizId) => {
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+
+  const onStartQuiz = (quizId) => {
     console.log('Starting quiz', quizId);
     window.alert('Starting quiz: ' + quizId);
-    const selected = quizzes.find((quiz) => quiz.quizId === quizId);
+    const selected = quizzes.find(quiz => quiz.quizId=== quizId);
+    // Perform if statements based on the selected quiz
+  // Check if the selected quiz has a quizId of 0
+  if (selected && selected.quizId === 0) {
+    // If the selected quiz has a quizId of 0, get sortType and title
+    const { sortType, title } = selected;
+    // Log the sortType and title
+    console.log('Sort Type:', sortType);
+    console.log('Title:', title);
+    fetchQuizQuestions(title);
 
-    if (selected && selected.quizId === 0) {
-      const { sortType, title } = selected;
-      await fetchQuizQuestions(title, 'MergeSortDemo');
-      console.log('Sort Type:', sortType);
-      console.log('Title:', title);
-      setSelectedQuiz(selected);
-      setQuizStarted(true);
-    } else {
-      console.log('Quiz not found or has a different quizId:', quizId);
-    }
-  };
-  const handleStart = () => {
-    setQuizStarted(true);
+
+    // Set the selected quiz in the state
+    setSelectedQuiz(selected);
+  } else {
+    // If the selected quiz doesn't exist or has a different quizId, handle the case
+    console.log('Quiz not found or has a different quizId:', quizId);
   }
-
-  const handleNextQuestion = () => {
-    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
-  const handleAnswerSelection = (questionId, selectedOption) => {
-    setUserAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionId]: selectedOption,
-    }));
-  };
-
-  /*return (
+  return (
     <div>
       <Header/>
       <h1>Practice Quizzes: </h1>
       {selectedQuiz ? (
         <div>
-          <h2>Quiz: {selectedQuiz.title}</h2>
-          <button onClick={handleStart}>Start</button>
+          <h2>Quiz: {selectedQuiz.Question}</h2>
+          {/* Render the quiz content here */}
+          
+          <button>Start</button>
           <div>
             <a href='/practice/merge/quizzes'>Back to Quiz List</a>
           </div>
         </div>
       ) : (
         // Render the list of quizzes
+        // <QuizzesList quizzes={quizzes} onStartQuiz={onStartQuiz} />
         <DBQuizzesList onStartQuiz={onStartQuiz} />
       )}
       <div>
@@ -119,64 +107,7 @@ const MergeQuizzesPage = () => {
       </div>
     
     </div>
-  );*/
-
-  return (
-    <div className="container">
-      <Header className="header" />
-      <h1 className="header">Practice Quizzes</h1>
-      {selectedQuiz ? (
-        <div className="quiz-container">
-          <h2 className="header">Quiz: {selectedQuiz.title}</h2>
-          {quizStarted ? (
-            quizQuestions.length > 0 && currentQuestionIndex < quizQuestions.length ? (
-              <div className="question-container">
-                <h3>Question {currentQuestionIndex + 1}</h3>
-                <p>{quizQuestions[currentQuestionIndex]?.question}</p>
-                <form className="options-container">
-                  {quizQuestions[currentQuestionIndex]?.options.filter((option) => option).map((option, index) => (
-                    <div className="option" key={index}>
-                      <input
-                        type="radio"
-                        id={`option${index}`}
-                        value={option}
-                        checked={userAnswers[quizQuestions[currentQuestionIndex]?.questionId] === option}
-                        onChange={() =>
-                          handleAnswerSelection(quizQuestions[currentQuestionIndex]?.questionId, option)
-                        }
-                      />
-                      <label htmlFor={`option${index}`}>{option}</label>
-                    </div>
-                  ))}
-                </form>
-                <button className="button" onClick={handleNextQuestion}>Next Question</button>
-              </div>
-            ) : (
-              <div className="question-container">
-                <h3>Quiz Completed!</h3>
-                <button className="button">Submit</button>
-              </div>
-            )
-          ) : (
-            <button className="button" onClick={() => onStartQuiz(selectedQuiz.quizId)}>Start Quiz</button>
-          )}
-          <div>
-            <a className="link" href='/practice/merge/quizzes'>Back to Quiz List</a>
-          </div>
-        </div>
-      ) : (
-        <DBQuizzesList onStartQuiz={onStartQuiz} />
-      )}
-      <div>
-        <a className="link" href='/practice/merge'>Back to Merge-Sort main page</a>
-      </div>
-    </div>
   );
 };
 
 export default MergeQuizzesPage;
-
-
-
-
-
