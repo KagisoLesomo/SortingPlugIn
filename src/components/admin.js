@@ -12,7 +12,6 @@ import {
   addDoc,
 } from 'firebase/firestore';
 import './AdminComponent.css';
-
 const AdminComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,23 +58,20 @@ const AdminComponent = () => {
       setLoading(false);
     }
   };
-
   const [formData, setFormData] = useState({
     Question: '',
-    Options: [], // Initialize with one empty option
+    Options: [],
     Answer: '',
     Explanation: '',
   });
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
     if (name === 'Options') {
       const optionsCount = parseInt(value, 10);
-      const maxOptions = Math.min(10, optionsCount);
-      const newOptions = Array.from({ length: maxOptions }, (_, index) => {
-        return formData.Options[index] ;
+      const newOptions = Array.from({ length: optionsCount }, (_, index) => {
+        return formData.Options[index] || '';
       });
 
       setFormData({
@@ -89,6 +85,7 @@ const AdminComponent = () => {
       });
     }
   };
+
   const [subcollectionId, setSubcollectionId] = useState('');
 
   const handleAddQuiz = async () => {
@@ -103,7 +100,7 @@ const AdminComponent = () => {
       }
 
       // Set title based on the selected sort type and subcollection ID
-      const title = `${selectedSort} Quiz: ${subcollectionId}`;
+      const Title = `${subcollectionId}`;
 
       try {
         // Set loading to true before adding the quiz
@@ -111,7 +108,7 @@ const AdminComponent = () => {
 
         // Add a document to the subcollection with the specified ID (user-input subcollectionId)
         await addDoc(collection(sortDocumentRef, subcollectionId), {
-          title,
+          Title,
           ...formData,
         });
 
@@ -121,7 +118,7 @@ const AdminComponent = () => {
         // Clear the form fields
         setFormData({
           Question: '',
-          Options: [], 
+          Options: [],
           Answer: '',
           Explanation: '',
         });
@@ -147,23 +144,23 @@ const AdminComponent = () => {
   }, [loggedIn]);
 
   return (
-    <div className="admin-component-container">
+    <div className="admin-component-container" >
       <h1>Admin Page</h1>
       {!loggedIn ? (
         <>
           <label>Email:</label>
           <input
             type="email"
-            placeholder="123@gmail.com"
             value={email}
+            placeholder="123@gmail.com"
             onChange={(e) => setEmail(e.target.value)}
           />
           <br />
           <label>Password:</label>
           <input
             type="password"
-            placeholder="Enter your password"
             value={password}
+            placeholder="Enter your password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <br />
@@ -185,15 +182,15 @@ const AdminComponent = () => {
             ))}
           </select>
 
-          <label>Quiz Number:</label>
+          <label>Quiz ID:</label>
           <input
             type="text"
-            placeholder="Enter quiz number i.e Quiz1 (repetition is allowed)"
             value={subcollectionId}
+            placeholder="Enter quiz ID"
             onChange={(e) => setSubcollectionId(e.target.value)}
           />
 
-          <h2>Enter Quiz Details:</h2>
+            <h2>Enter Quiz Details:</h2>
           <label>Question:</label>
           <input
             type="text"
@@ -202,18 +199,18 @@ const AdminComponent = () => {
             onChange={handleInputChange}
           />
           <br />
-          <label>Number of Options:</label>
-          <input
-            type="number"
-            name="Options"
-      
-            onChange={handleInputChange}
-            min="1"
-            max="10"
+
+            <label>Number of Options:</label>
+            <input
+              type="number"
+              name="Options"
+              onChange={handleInputChange}
+              min="1"
+              max="10"
           />
           <br />
           <label>Insert Answer Options:</label>
-{Array.from({ length: formData.Options.length }, (_, index) => (
+          {Array.from({ length: formData.Options.length }, (_, index) => (
   <div key={index}>
     <label>{`Option ${String.fromCharCode(65 + index)}:`}</label>
     <input
@@ -225,20 +222,16 @@ const AdminComponent = () => {
     <br />
   </div>
 ))}
-
-
-
-
-          <label>Insert The Answer:</label>
+          <label>Insert Answer:</label>
           <input
             type="text"
             name="Answer"
-            placeholder="Enter Answer"
             value={formData.Answer}
+            placeholder="Enter Answer"
             onChange={handleInputChange}
           />
           <br />
-          <label>Explanation Of Answer:</label>
+          <label>Explanation:</label>
           <input
             type="text"
             name="Explanation"
@@ -249,12 +242,11 @@ const AdminComponent = () => {
           <br />
           <button onClick={handleAddQuiz}>Add Quiz</button>
 
-          {/* {loading ? (
+          {loading ? (
             <p>Quiz added successfully</p>
-            
           ) : (
-            <p>Loading...</p>
-          )} */}
+            <p></p>
+          )}
         </>
       )}
     </div>
