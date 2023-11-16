@@ -13,16 +13,17 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
       window.alert("Logged in successfully:" + user.email);
-      navigate("/");
+
+      // Redirect based on user type
+      if (user.email === 'admin@example.com') {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.error('Login error:', error.message);
       window.alert("Error logging in: " + error.message);
     }
-  };
-
-  const handleAdminRedirect = () => {
-    // Redirect to admin.js or the admin route
-    navigate("/admin");
   };
 
   return (
@@ -38,9 +39,6 @@ const Login = () => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
       <button onClick={handleLogin}>Login</button>
-
-      {/* Button to redirect to admin page */}
-      <button onClick={handleAdminRedirect}>Admin</button>
 
       <p className="text-sm text-white text-center">
         No account yet?{' '}
