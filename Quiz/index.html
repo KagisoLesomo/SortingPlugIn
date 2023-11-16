@@ -7,8 +7,12 @@
   <div class="container">
     <h1>Bubble Sort Practice</h1>
     <p>The array will sort using 'Bubble Sort', then at random point, it will pause and ask you questions related tot the sorting process:</p>
+    <label for="custom-array">Custom Array:</label>
+    <input type="text" id="custom-array" placeholder="Enter numbers separated by spaces">
+    <button id="submit-custom-array">Submit Custom Array</button>
+    <button id="generate-random-array">Generate Random Array</button>
     <canvas id="bubble-canvas" width="600" height="100"></canvas>
-    <button id="start-sort">Start Sorting</button>
+    <button id="start-sort" disabled>Start Sorting</button>
     <p id="result"></p>
   </div>
 

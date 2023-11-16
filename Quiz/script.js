@@ -8,6 +8,10 @@ let isSorting = false;
 let userInput = [];
 let userInputPrompts = 0;
 
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("generate-random-array").click();
+});
+
 function generateRandomArray() {
   const size = Math.floor(Math.random() * 6) + 5; // Random size between 5 and 10
   return Array.from({ length: size }, () => Math.floor(Math.random() * 100)); // Random numbers between 0 and 99
@@ -121,5 +125,34 @@ document.getElementById("start-sort").addEventListener("click", async () => {
     disableInput();
   }
 });
+
+
+document.getElementById("submit-custom-array").addEventListener("click", function() {
+  const customArrayInput = document.getElementById("custom-array").value;
+  const customArray = customArrayInput.split(" ").map(Number);
+
+  if (validateArray(customArray)) {
+    arrayToSort = customArray;
+    displayArray();
+    document.getElementById("start-sort").disabled = false;
+  } else {
+    alert("Invalid input. Please enter a valid array.");
+  }
+});
+
+document.getElementById("generate-random-array").addEventListener("click", function() {
+  arrayToSort = generateRandomArray();
+  displayArray();
+  document.getElementById("start-sort").disabled = false;
+});
+
+function validateArray(arr) {
+  return Array.isArray(arr) && arr.every(Number.isInteger);
+}
+
+function generateRandomArray() {
+  const size = Math.floor(Math.random() * 6) + 5; // Random size between 5 and 10
+  return Array.from({ length: size }, () => Math.floor(Math.random() * 100)); // Random numbers between 0 and 99
+}
 
 displayArray();
