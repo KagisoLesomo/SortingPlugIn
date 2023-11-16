@@ -1,0 +1,70 @@
+/* AdminComponent.css */
+
+.admin-component-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-component-container input,
+  .admin-component-container select {
+    width: calc(100% - 20px);
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admin-component-container button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .admin-component-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .admin-component-container .admin-containerlabel {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .admin-component-container h1,
+  .admin-component-container h2 {
+    color: #333;
+  }
+  
+  .admin-component-container p {
+    margin-top: 10px;
+    color: #4caf50;
+  }
+  
+  .admin-component-container .admin-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-component-container .admin-form label,
+  .admin-component-container .admin-form select,
+  .admin-component-container .admin-form input {
+    margin-bottom: 15px;
+    padding-bottom: 55px;
+  }
+  
+  .admin-component-container .admin-form button {
+    align-self: flex-start;
+  }
+  
+  .admin-component-container .admin-form p {
+    margin-top: 0;
+  }
+  
