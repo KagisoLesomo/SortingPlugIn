@@ -18,29 +18,31 @@ const AdminComponent = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [selectedSort, setSelectedSort] = useState('');
   const [sortsData, setSortsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const handleLogin = async () => {
+  
+  const [loading, setLoading] = useState(true); const handleLogin = async () => {
     try {
       const auth = getAuth();
+      console.log('Logging in with email:', email);
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
       const user = userCredential.user;
-
+  
       // If login is successful, set loggedIn state to true
       setLoggedIn(true);
     } catch (error) {
       console.error('Error logging in:', error.message);
     }
-  };
+  };   
 
   const fetchSortsData = async () => {
+    
     const db = getFirestore();
     const sortsCollection = collection(db, 'Sorts');
     const sortsQuery = query(sortsCollection);
+
 
     try {
       const querySnapshot = await getDocs(sortsQuery);
@@ -54,17 +56,20 @@ const AdminComponent = () => {
       setLoading(false);
       console.log('Fetched Sorts data:', data);
     } catch (error) {
+      
       console.error('Error getting Sorts data:', error);
       setLoading(false);
     }
   };
+
   const [formData, setFormData] = useState({
     Question: '',
-    Options: [],
+    Options: [], // Initialize with one empty option
     Answer: '',
     Explanation: '',
   });
 
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -139,6 +144,7 @@ const AdminComponent = () => {
 
   useEffect(() => {
     if (loggedIn) {
+        
       fetchSortsData();
     }
   }, [loggedIn]);
