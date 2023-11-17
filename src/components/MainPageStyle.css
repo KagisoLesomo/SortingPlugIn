@@ -23,20 +23,22 @@ html{
     align-content: center;
 }
 
-  .heading {
-    padding: 1rem;
-    font-family: 'Saira Condensed', sans-serif;
-    top: 0;
-    font-size: 2.6rem;
-    color: white;
-  }
+.heading {
+  padding: 1rem;
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 2.6rem;
+  color: white;
+  text-align: center;
+}
+
 
   .heading-sort {
     font-family: 'Inter', sans-serif;
-    color: rgb(254,54,238);
+    color: rgb(254, 54, 238);
     font-size: 2.5rem;
-    padding-left: 22rem;
+    text-align: center;
   }
+  
 
   .main-heading-sort {
     font-family: 'Inter', sans-serif;

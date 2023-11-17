@@ -35,7 +35,8 @@ const BubbleSortComponent = () => {
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = "black";
-      ctx.font = "20px Arial";
+      ctx.font = "bold 20px Arial";
+
       ctx.fillText(num, bubbleX + bubbleWidth / 2 - 10, bubbleY + bubbleWidth / 2 + 5);
 
       if (comparingIndices && (index === comparingIndices[0] || index === comparingIndices[1])) {
@@ -89,8 +90,8 @@ const BubbleSortComponent = () => {
 
   return (
     <div>
-      <h1>Bubble Sort Practice</h1>
-      <p>The array will sort using 'Bubble Sort' without interruptions:</p>
+      <h1  style={{ color: 'white', fontSize: '40px', fontWeight: 'bold', textAlign: 'center' }} >Bubble Sort </h1>
+      <p style={{ color: 'white', fontSize: '20px', fontWeight: 'bold', textAlign: 'center' }} >Once you press Sort Do not interrupt it </p>
       <canvas id="bubble-canvas" width="600" height="100"></canvas>
       <button id="start-sort" onClick={async () => {
         if (!isSorting) {

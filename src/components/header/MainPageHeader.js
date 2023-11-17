@@ -26,18 +26,6 @@ const Header = () => {
     });
   }
 
-  const goBack = () => {
-    navigate(-1);
-  };
-
-  const goHome = () => {
-    navigate("/");
-  }
-
-  const goNext = () => {
-    navigate(+1);
-  };
-
   return (
     <div>
       
@@ -46,9 +34,11 @@ const Header = () => {
           <h1> DATA STRUCTURES & ALGORITHMS: </h1>
         </div>
 
-        <div class="logout-btn"> 
-          <button onClick={handleLogout}>Logout</button>  
-        </div>  
+        <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: '1001' }}>
+        <div className="logout-btn">
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      </div>
 
       </div>
       

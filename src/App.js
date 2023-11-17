@@ -18,6 +18,8 @@ import AdminPage from './components/admin.js';
 
 import {OtherSort,Overview,Practice} from './components/sorts/OtherSort';
 
+import ReleaseNotes from './components/ReleaseNotes.js';
+
 import Login from './components/Login';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
@@ -67,6 +69,7 @@ function App() {
         <Route path="/other/overview" element={<Overview />} />
         <Route path="/other/practice" element={<Practice />} />
 
+        <Route path="/release-notes" element={<ReleaseNotes />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/"
@@ -80,7 +83,7 @@ function App() {
                 <MainPage />
               )
             ) : (
-              <Navigate to="/login" />
+              <Navigate to="/Login" />
             )
           }
         />

@@ -31,7 +31,6 @@ const DBQuizzesList = ({onStartQuiz}) => {
 
   return (
     <div>
-      <h1>Quick Quizzes(firestore):</h1>
     <table className="styled-table">
       <thead>
         <tr>
