@@ -30,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #000;
   margin: 5px;
   cursor: pointer;
 }
@@ -45,7 +46,10 @@
 
 .circle.green {
   background-color: lightgreen;
-  border: 3px solid lightgreen;
+  border: 5px solid lightgreen;
+  margin: 5px;
+  cursor: pointer;
+
 }
 
 .circle.isFinalPosition {
@@ -90,3 +94,59 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+/*.quicksort-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.options {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.selected-pivot {
+  background-color: #ffcc00;
+}
+
+.green {
+  background-color: #00ff00;
+}
+
+.red {
+  background-color: #ff0000; 
+}
+
+.pivot-label {
+  margin-top: 10px;
+}
+
+.label-text {
+  font-weight: bold;
+}
+
+.pivot-number {
+  color: #ffcc00;
+}
+
+.select-pivot-message {
+  font-weight: bold;
+}*/

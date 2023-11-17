@@ -25,7 +25,7 @@ const Quicksort = () => {
     setInputArr(e.target.value);
   };
 
-    
+  
   const handleGenerateRandomArray = () => {
     const length = parseInt(arrayLength, 10);
     if (!isNaN(length) && length > 0) {
@@ -49,14 +49,15 @@ const Quicksort = () => {
     setCorrectAnswer(""); // Reset correct answer after sorting is complete
     alert("Sorting is complete!");
   };
-  
+
   const generateRandomArray = (length) => {
-    const newArray = [];
+    const arr = [];
     for (let i = 0; i < length; i++) {
-      newArray.push(Math.floor(Math.random() * 100));
+      arr.push(Math.floor(Math.random() * 100));
     }
-    return newArray;
+    return arr;
   };
+
   const quicksort = async (arr, start, end, steps) => {
     if (start >= end) {
       return;
