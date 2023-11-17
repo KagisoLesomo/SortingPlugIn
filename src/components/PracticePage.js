@@ -33,8 +33,8 @@ const PracticePage = () => {
 
       </div>
       
-      <div className='content'>
-        <h2>What is Sorting?</h2>
+      <div style={{flexGrow: '1', padding: '30px', textAlign: 'center', fontFamily: 'Saira Condensed, sans-serif'}}>
+        <h2 style={{color: 'aliceblue',  fontSize: '3rem'}}>What is Sorting?</h2>
         
         <div className="definition">
           <p>
@@ -43,7 +43,7 @@ const PracticePage = () => {
             There are many different sorting algorithms, each has its own advantages and limitations. <br />
           </p>
         </div>
-        <h2>Sorting Algorithms:</h2>
+        <h2 style={{color: 'aliceblue',  fontSize: '3rem'}}>Sorting Algorithms:</h2>
         <div className="definition">
            <p>
             There are many sorting algorithms, each has its own advantages and limitations. <br />
@@ -59,7 +59,7 @@ const PracticePage = () => {
           </ul>
       </div>
 
-      <h2>General sorting example:</h2>
+      <h2 style={{color: 'aliceblue',  fontSize: '3rem'}}>General sorting example:</h2>
       <div className="definition">
         <p style={{fontSize:'30px',textAlign:'center'}}>
           The following is a general example of sorting a list of integers in ascending order: <br />
@@ -69,7 +69,7 @@ const PracticePage = () => {
         </div>  
       </div>
 
-      <h2>Practice:</h2>
+      <h2 style={{color: 'aliceblue',  fontSize: '3rem'}}>Practice:</h2>
       <div className="definition">
         <p style={{fontSize:'30px',textAlign:'center'}}>Click on the sorting algorithm you want to practice:</p>
         <ul>
@@ -79,7 +79,7 @@ const PracticePage = () => {
         </ul>
       </div>
 
-      <h2>More help:</h2>
+      <h2 style={{color: 'aliceblue',  fontSize: '3rem'}}>More help:</h2>
       <div className="definition">
         <p>
           <b>NOTE:</b> This site is meant to work alongside Lecture knowledge for testing and to provide extra practice on Sorting. <br />
