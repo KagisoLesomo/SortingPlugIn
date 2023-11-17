@@ -4,6 +4,7 @@ import "./Quicksort.css";
 
 const Quicksort = () => {
   const [arr, setArr] = useState([]);
+  const [arrayLength, setArrayLength] = useState("");
   const [inputArr, setInputArr] = useState("");
   const [isSorting, setIsSorting] = useState(false);
   const [steps, setSteps] = useState([]);
@@ -16,14 +17,26 @@ const Quicksort = () => {
     setPivotPosition(arr.indexOf(value));
   };
 
+  const handleArrayLengthChange = (e) => {
+    setArrayLength(e.target.value);
+  };
+
   const handleInputChange = (e) => {
     setInputArr(e.target.value);
   };
 
+    
   const handleGenerateRandomArray = () => {
-    setArr(generateRandomArray(15));
+    const length = parseInt(arrayLength, 10);
+    if (!isNaN(length) && length > 0) {
+      setIsSorting(false); // Stop the sorting process if it's ongoing
+      setPivotPosition(null);
+      setComparingNumbers([]);
+      setArr(generateRandomArray(length));
+    } else {
+      alert("Please enter a valid array length.");
+    }
   };
-
   const handleSortArray = async () => {
     setIsSorting(true);
     const arrToSort = [...arr];
@@ -36,15 +49,14 @@ const Quicksort = () => {
     setCorrectAnswer(""); // Reset correct answer after sorting is complete
     alert("Sorting is complete!");
   };
-
+  
   const generateRandomArray = (length) => {
-    const arr = [];
+    const newArray = [];
     for (let i = 0; i < length; i++) {
-      arr.push(Math.floor(Math.random() * 100));
+      newArray.push(Math.floor(Math.random() * 100));
     }
-    return arr;
+    return newArray;
   };
-
   const quicksort = async (arr, start, end, steps) => {
     if (start >= end) {
       return;
@@ -86,22 +98,27 @@ const Quicksort = () => {
         const temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-        setArr([...arr]);
-
-        // Highlight the numbers being compared
+  
+        // Highlight the numbers being compared in yellow
+        const comparingIndexes = [i, j];
         steps.push([
           arr.map((_, index) => ({
             value: arr[index],
-            isComparing: index === i || index === j,
+            isComparing: comparingIndexes.includes(index),
+            isFinalPosition: index === j,
           })),
           pivotPosition,
         ]);
+  
+        setArr([...arr]);
         setSteps([...steps]);
-
+  
         resolve();
-      }, 750);
+      }, 1000);
     });
   };
+  
+  
 
   return (
     <div className="quicksort-container">
@@ -111,6 +128,12 @@ const Quicksort = () => {
           placeholder="Enter array (e.g., 1, 2, 3)"
           value={inputArr}
           onChange={handleInputChange}
+        />
+         <input
+          type="text"
+          placeholder="Enter array length"
+          value={arrayLength}
+          onChange={handleArrayLengthChange}
         />
         <button onClick={() => setArr(inputArr.split(",").map(Number))}>
           Use Input Array
