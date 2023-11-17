@@ -29,26 +29,25 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <Header/>
-    <div className='login-page'>
-        <h1 className='h1'>Login Page:</h1>
-        
+    
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh',backgroundImage: 'url("../images/background.png")', backgroundSize: 'cover', paddingTop: '60px'}}>
+      <Header />
 
-      <div className='form'>
-      <div>
-      <label htmlFor="email-address"><b>Email address: </b></label>
-        <input className='input' type="email" value={email} placeholder='me@gmail.com' onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <div>
-        <label htmlFor="password"><b>Password: </b></label>
-        <input className='input' type="password" value={password} placeholder='mypassword' onChange={(e) => setPassword(e.target.value)} />
-      </div>
-      </div>
+      <div class="login-container">
 
-      <button className='button' onClick={handleLogin}>LOGIN</button>
+          <div class="email-label">
+              
+              <label htmlFor="email-address" >  </label>
+              <input type="email" value={email} placeholder='me@gmail.com' onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div class="password-label">
+              
+              <label htmlFor="password"></label>
+              <input type="password" value={password} placeholder='mypassword' onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <div class="btn"> <button onClick={handleLogin}>Login</button> <button onClick={handleLogin}>Sign Up</button> </div>
       </div>
-    </div>
+      </div>
   );
 };
 
