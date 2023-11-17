@@ -3,7 +3,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import * as RiIcons from "react-icons/ri";
-import { BsFillSuitDiamondFill } from "react-icons/bs";
+import { BsFillSuitDiamondFill, BsEyeFill } from "react-icons/bs";
 
 export const SidebarData = [
 {
@@ -53,13 +53,18 @@ export const SidebarData = [
 	]
 },
 {
+	title: "Visualizer",
+	path: "/visualizer",
+	icon: <BsEyeFill/>,
+},
+{
 	title: "Release Notes",
-	path: "/practice/other",
-	icon: <IoIcons.IoMdHelpCircle />,
+	path: "/release-notes",
+	icon: <AiIcons.AiFillFilePdf />,
 },
 {
 	title: "User Manual",
 	path: "/practice/other",
-	icon: <IoIcons.IoMdHelpCircle />,
+	icon: <AiIcons.AiFillFilePdf />,
 },
 ];
