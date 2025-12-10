@@ -39,8 +39,8 @@ A modern, intuitive interface designed for optimal learning:
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/KagisoLesomo/SortingPlugIn.git
+cd SortingPlugIn
 ```
 
 2. Install dependencies:
@@ -118,8 +118,8 @@ We welcome feedback and contributions! If you'd like to:
 - Contribute code
 
 Please feel free to:
-- Open an issue on GitHub
-- Submit a pull request
+- [Open an issue](https://github.com/KagisoLesomo/SortingPlugIn/issues) on GitHub
+- [Submit a pull request](https://github.com/KagisoLesomo/SortingPlugIn/pulls)
 - Contact us directly (see below)
 
 ---
@@ -141,9 +141,9 @@ Please feel free to:
 
 Your feedback is invaluable to us! If you encounter any issues, have suggestions, or would like to share your experience, please:
 
-- **Open an Issue**: Create a GitHub issue with detailed information
+- **[Open an Issue](https://github.com/KagisoLesomo/SortingPlugIn/issues)**: Create a GitHub issue with detailed information
 - **Contact Us**: Reach out to the authors directly
-- **Discussions**: Join our GitHub Discussions for questions and ideas
+- **[Discussions](https://github.com/KagisoLesomo/SortingPlugIn/discussions)**: Join our GitHub Discussions for questions and ideas
 
 ---
 
