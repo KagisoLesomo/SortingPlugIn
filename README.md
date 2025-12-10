@@ -156,7 +156,7 @@ This project is designed to help students and learners:
 
 ## 📚 Additional Resources
 
-For more detailed information about using the application, please consult the [User Manual](./docs/USER_MANUAL.md) (if available).
+For more detailed information about using the application, please consult the [User Manual](./UsuerManual.pdf).
 
 ---
 
