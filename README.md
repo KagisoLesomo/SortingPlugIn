@@ -124,19 +124,6 @@ Please feel free to:
 
 ---
 
-## 📝 License
-
-[Add your license here - e.g., MIT, Apache 2.0, etc.]
-
----
-
-## 👥 Authors
-
-- [@KagisoLesomo](https://github.com/KagisoLesomo)
-- [@SenzoG19](https://github.com/SenzoG19)
-
----
-
 ## 📧 Feedback & Support
 
 Your feedback is invaluable to us! If you encounter any issues, have suggestions, or would like to share your experience, please:
